@@ -1,0 +1,67 @@
+class Solution {
+    class pos{
+        int ind;
+        int c;
+        pos(int ind,int c){
+            this.ind=ind;
+            this.c=c;
+        }
+    }
+    public static int ind(int i,int j,int col){
+        return i*col+j;
+    }
+    public int orangesRotting(int[][] grid) {
+        if(grid.length==0)
+            return 0;
+        int row=grid.length;
+        int col=grid[0].length;
+        int k1=0;
+        for(int i=0;i<row;i++){
+            for(int j=0;j<col;j++){
+                if(grid[i][j]==1)
+                   k1=1;
+            }
+        }
+        if(k1==0)
+            return 0;
+        Queue<pos> q=new LinkedList<>();
+        for(int i=0;i<row;i++){
+            for(int j=0;j<col;j++){
+                if(grid[i][j]==2){
+                    grid[i][j]=0;
+                    q.add(new pos(ind(i,j,col),0));
+            }
+          }
+        }
+        int k=0;
+            while(!q.isEmpty()){
+                        pos z=q.remove();
+                        int x=z.ind/col;
+                        int y=z.ind%col;
+                        if(x-1>=0 && grid[x-1][y]==1){
+                            q.add(new pos(ind(x-1,y,col),z.c+1));
+                            grid[x-1][y]=0;
+                        }
+                        if(x+1<row && grid[x+1][y]==1){
+                            q.add(new pos(ind(x+1,y,col),z.c+1));
+                            grid[x+1][y]=0;
+                        }
+                        if(y-1>=0 && grid[x][y-1]==1){
+                            q.add(new pos(ind(x,y-1,col),z.c+1));
+                            grid[x][y-1]=0;
+                        }
+                        if(y+1<col && grid[x][y+1]==1){
+                            q.add(new pos(ind(x,y+1,col),z.c+1));
+                            grid[x][y+1]=0;
+                        }
+                        k=z.c;
+                    }
+        for(int i=0;i<row;i++){
+            for(int j=0;j<col;j++){
+                if(grid[i][j]==1)
+                    return -1;
+            }
+        }
+        return k;
+    }
+}

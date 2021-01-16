@@ -1,0 +1,17 @@
+class Solution{
+    public static void convertToWave(int arr[], int n){
+        // code here
+        for(int i=1;i<n;i=i+2){
+            if (arr[i]>arr[i-1]){
+                int t=arr[i];
+                arr[i]=arr[i-1];
+                arr[i-1]=t;
+            }
+            if(i!=n-1 && arr[i]>arr[i+1]){
+                int t=arr[i];
+                arr[i]=arr[i+1];
+                arr[i+1]=t;
+            }
+        }
+    }
+}

@@ -1,0 +1,19 @@
+class Solution
+{
+    public String smallestnum(String N)
+    {
+       //code here
+       int c=0;
+       for(int i=0;i<N.length();i++){
+          if (N.charAt(i)=='0')
+            c=c+1;
+       }
+       char ch[]=N.toCharArray();
+       Arrays.sort(ch);
+       char t=ch[c];
+       ch[c]=ch[0];
+       ch[0]=t;
+       return String.valueOf(ch);
+       
+    }
+}

@@ -1,0 +1,18 @@
+import math
+class Solution:
+    def micsandjury (self, N, M, teams):
+        #code here
+        high=max(teams)
+        low=1
+        ans=high
+        while(low<=high):
+            mid=(low+high)//2
+            count=0
+            for i in teams:
+                count=count+math.ceil(i/mid)
+            if count<=N:
+                high=mid-1
+                ans=mid
+            else:
+                low=mid+1
+        return ans

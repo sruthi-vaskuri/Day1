@@ -1,0 +1,17 @@
+public static boolean ispathexists(ArrayList<Edge> []graph,int src,int dest,int v){
+        Queue<Integer> q=new LinkedList<>();
+        q.add(src);
+        int visit[]=new int[v];
+        while(!q.isEmpty()){
+            int k=q.remove();
+            visit[k]=1;
+            if(k==dest)
+               return true;
+            for(int i=0;i<graph[k].size();i++){
+                if(visit[graph[k].get(i).nbr]==0){
+                    q.add(graph[k].get(i).nbr);
+                }
+            }
+        }
+        return false;
+    }

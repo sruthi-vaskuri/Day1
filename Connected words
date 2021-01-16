@@ -1,0 +1,37 @@
+class pair{
+    String word;
+    int level;
+    pair(String word,int level){
+        this.word=word;
+        this.level=level;
+    }
+}
+public class Solution {
+    public int wordLadderLength(String start, String target, Set<String> D) {
+        // code here
+        Queue<pair> q=new LinkedList<>();
+        if(!D.contains(target) || start.equals(target))
+            return 0;
+        q.add(new pair(start,1));
+        while(!q.isEmpty()){
+            for(int k=0;k<q.size();k++){
+                pair p=q.remove();
+                char array[]=p.word.toCharArray();
+                for(int i=0;i<p.word.length();i++){
+                    char ch=array[i];
+                    for(char j='a';j<='z';j++){
+                        array[i]=j;
+                        if(String.valueOf(array).equals(target))
+                            return p.level+1;
+                        if(D.contains(String.valueOf(array))){
+                            D.remove(String.valueOf(array));
+                            q.add(new pair(String.valueOf(array),p.level+1));
+                        }
+                    }
+                    array[i]=ch;
+                }
+            }
+        }
+        return 0;
+    }
+}

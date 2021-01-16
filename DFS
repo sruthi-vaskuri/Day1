@@ -1,0 +1,23 @@
+class Solution
+{
+    public void dfs(ArrayList<ArrayList<Integer>> adj,int[] visit,int i,ArrayList<Integer> arr){
+            visit[i]=1;
+            arr.add(i);
+            for(int j=0;j<adj.get(i).size();j++){
+                if(visit[adj.get(i).get(j)]==0)
+                     dfs(adj,visit,adj.get(i).get(j),arr);
+            }
+    }
+    public ArrayList<Integer> dfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj)
+    {
+        // Code here
+        int visit[]=new int[V];
+        ArrayList<Integer> arr=new ArrayList<>();
+        for(int i=0;i<V;i++){
+            if(visit[i]==0){
+                dfs(adj,visit,i,arr);
+            }
+        }
+        return arr;
+    }
+}

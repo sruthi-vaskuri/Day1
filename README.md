@@ -1,4 +1,4 @@
-# 16-01-2021
+# Day1
 
 
 ## Problems from Flipkart Contest 1 and Contest 2 
